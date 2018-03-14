@@ -1,0 +1,177 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'main_form.ui'
+#
+# Created by: PyQt5 UI code generator 5.10.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(839, 568)
+        self.gridLayout_3 = QtWidgets.QGridLayout(Form)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.mainTab = QtWidgets.QTabWidget(Form)
+        self.mainTab.setObjectName("mainTab")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.gridLayout = QtWidgets.QGridLayout(self.tab)
+        self.gridLayout.setObjectName("gridLayout")
+        self.textBrowser = QtWidgets.QTextBrowser(self.tab)
+        self.textBrowser.setObjectName("textBrowser")
+        self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
+        self.mainTab.addTab(self.tab, "")
+        self.journalsTab = QtWidgets.QWidget()
+        self.journalsTab.setObjectName("journalsTab")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.journalsTab)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.journalText = QtWidgets.QTableWidget(self.journalsTab)
+        self.journalText.setObjectName("journalText")
+        self.journalText.setColumnCount(4)
+        self.journalText.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.journalText.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.journalText.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.journalText.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.journalText.setHorizontalHeaderItem(3, item)
+        self.gridLayout_2.addWidget(self.journalText, 0, 2, 1, 1)
+        self.journalUpdateButton = QtWidgets.QPushButton(self.journalsTab)
+        self.journalUpdateButton.setObjectName("journalUpdateButton")
+        self.gridLayout_2.addWidget(self.journalUpdateButton, 1, 2, 1, 1)
+        self.journalsTree = QtWidgets.QTreeWidget(self.journalsTab)
+        self.journalsTree.setMinimumSize(QtCore.QSize(170, 0))
+        self.journalsTree.setMaximumSize(QtCore.QSize(170, 16777215))
+        self.journalsTree.setObjectName("journalsTree")
+        item_0 = QtWidgets.QTreeWidgetItem(self.journalsTree)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_0 = QtWidgets.QTreeWidgetItem(self.journalsTree)
+        item_0 = QtWidgets.QTreeWidgetItem(self.journalsTree)
+        item_0 = QtWidgets.QTreeWidgetItem(self.journalsTree)
+        self.gridLayout_2.addWidget(self.journalsTree, 0, 1, 2, 1)
+        self.mainTab.addTab(self.journalsTab, "")
+        self.monitorTab = QtWidgets.QWidget()
+        self.monitorTab.setObjectName("monitorTab")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.monitorTab)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.label_2 = QtWidgets.QLabel(self.monitorTab)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_5.addWidget(self.label_2, 1, 0, 1, 1)
+        self.label = QtWidgets.QLabel(self.monitorTab)
+        self.label.setObjectName("label")
+        self.gridLayout_5.addWidget(self.label, 0, 0, 1, 1)
+        self.groupBox = QtWidgets.QGroupBox(self.monitorTab)
+        self.groupBox.setObjectName("groupBox")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.recomendText = QtWidgets.QTextBrowser(self.groupBox)
+        self.recomendText.setObjectName("recomendText")
+        self.gridLayout_4.addWidget(self.recomendText, 0, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.groupBox, 0, 2, 5, 1)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_5.addItem(spacerItem, 3, 1, 1, 1)
+        self.label_3 = QtWidgets.QLabel(self.monitorTab)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_5.addWidget(self.label_3, 2, 0, 1, 1)
+        self.avStatusLabel = QtWidgets.QLabel(self.monitorTab)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
+        font.setWeight(75)
+        self.avStatusLabel.setFont(font)
+        self.avStatusLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.avStatusLabel.setObjectName("avStatusLabel")
+        self.gridLayout_5.addWidget(self.avStatusLabel, 0, 1, 1, 1)
+        self.integControlLabel = QtWidgets.QLabel(self.monitorTab)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
+        font.setWeight(75)
+        self.integControlLabel.setFont(font)
+        self.integControlLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.integControlLabel.setObjectName("integControlLabel")
+        self.gridLayout_5.addWidget(self.integControlLabel, 1, 1, 1, 1)
+        self.clWSLabel = QtWidgets.QLabel(self.monitorTab)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
+        font.setWeight(75)
+        self.clWSLabel.setFont(font)
+        self.clWSLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.clWSLabel.setObjectName("clWSLabel")
+        self.gridLayout_5.addWidget(self.clWSLabel, 2, 1, 1, 1)
+        self.monUpdButton = QtWidgets.QPushButton(self.monitorTab)
+        self.monUpdButton.setObjectName("monUpdButton")
+        self.gridLayout_5.addWidget(self.monUpdButton, 4, 0, 1, 2)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_5.addItem(spacerItem1, 3, 0, 1, 1)
+        self.mainTab.addTab(self.monitorTab, "")
+        self.gridLayout_3.addWidget(self.mainTab, 0, 0, 1, 1)
+
+        self.retranslateUi(Form)
+        self.mainTab.setCurrentIndex(1)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Окно администратора"))
+        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Эта программа написана с целью облегчить работу системному администратору в системе Astra Linux.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Программа тестировалась для релиза &quot;Astra Linux 1.5 Смоленск&quot;</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Первая вкладка - журналы. </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">На этой вкладке присутствует 3 вида журналов:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1.  Системные - основные журналы, которые содержатся в любой Linux-системе. Выведены сюда для удобного просмотра важных логов</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Astra Linux - журналы, которые идут в Astra Linux. Касаются ALD и контроля пользователей. Лежат в папке /var/log/ald/*</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. Другие - Журналы, которые не относятся ни к ALD ни к системным, но так же могут быть полезными (их может не быть вообще)</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Вторая вкладка -  мониторинг.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Показывает общее состояние защищённости системы. Так же тут выводятся рекомендации по улучшению защищённости. В качестве критериев выступают факторы:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. Наличие антивирусного ПО (Доктор Веб или Касперский)</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Наличие контроля целостности файлов. Если настроен контроль целостности, выводится дата последней синхронизации.&lt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. Активность системы Защищённой Среды. Учитывается, что эта система может быть включена частично (настроена только проверка ЭЦП устанавливаемых пакетов программ).</p></body></html>"))
+        self.mainTab.setTabText(self.mainTab.indexOf(self.tab), _translate("Form", "О программе"))
+        item = self.journalText.horizontalHeaderItem(0)
+        item.setText(_translate("Form", "Дата"))
+        item = self.journalText.horizontalHeaderItem(1)
+        item.setText(_translate("Form", "Время"))
+        item = self.journalText.horizontalHeaderItem(2)
+        item.setText(_translate("Form", "Компьютер"))
+        item = self.journalText.horizontalHeaderItem(3)
+        item.setText(_translate("Form", "Событие"))
+        self.journalUpdateButton.setText(_translate("Form", "Обновить Журнал"))
+        self.journalsTree.headerItem().setText(0, _translate("Form", "Журналы"))
+        __sortingEnabled = self.journalsTree.isSortingEnabled()
+        self.journalsTree.setSortingEnabled(False)
+        self.journalsTree.topLevelItem(0).setText(0, _translate("Form", "Системные"))
+        self.journalsTree.topLevelItem(0).child(0).setText(0, _translate("Form", "auth.log"))
+        self.journalsTree.topLevelItem(0).child(1).setText(0, _translate("Form", "syslog"))
+        self.journalsTree.topLevelItem(0).child(2).setText(0, _translate("Form", "kern.log"))
+        self.journalsTree.topLevelItem(1).setText(0, _translate("Form", "Astra Linux"))
+        self.journalsTree.topLevelItem(2).setText(0, _translate("Form", "USB"))
+        self.journalsTree.topLevelItem(3).setText(0, _translate("Form", "Другие"))
+        self.journalsTree.setSortingEnabled(__sortingEnabled)
+        self.mainTab.setTabText(self.mainTab.indexOf(self.journalsTab), _translate("Form", "Журналы"))
+        self.label_2.setText(_translate("Form", "Контроль целостности"))
+        self.label.setText(_translate("Form", "Антивирусная защита"))
+        self.groupBox.setTitle(_translate("Form", "Рекомендаци по защите"))
+        self.label_3.setText(_translate("Form", "Замкнутая программная среда"))
+        self.avStatusLabel.setText(_translate("Form", "ВЫКЛЮЧЕНА"))
+        self.integControlLabel.setText(_translate("Form", "ВЫКЛЮЧЕН"))
+        self.clWSLabel.setText(_translate("Form", "ВЫКЛЮЧЕНА"))
+        self.monUpdButton.setText(_translate("Form", "Проверить"))
+        self.mainTab.setTabText(self.mainTab.indexOf(self.monitorTab), _translate("Form", "Мониторинг"))
+

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>839</width>
+    <height>568</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Окно администратора</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="mainTab">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>О программе</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QTextBrowser" name="textBrowser">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Эта программа написана с целью облегчить работу системному администратору в системе Astra Linux.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Программа тестировалась для релиза &amp;quot;Astra Linux 1.5 Смоленск&amp;quot;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Первая вкладка - журналы. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;На этой вкладке присутствует 3 вида журналов:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1.  Системные - основные журналы, которые содержатся в любой Linux-системе. Выведены сюда для удобного просмотра важных логов&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. Astra Linux - журналы, которые идут в Astra Linux. Касаются ALD и контроля пользователей. Лежат в папке /var/log/ald/*&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Другие - Журналы, которые не относятся ни к ALD ни к системным, но так же могут быть полезными (их может не быть вообще)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Вторая вкладка -  мониторинг.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Показывает общее состояние защищённости системы. Так же тут выводятся рекомендации по улучшению защищённости. В качестве критериев выступают факторы:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. Наличие антивирусного ПО (Доктор Веб или Касперский)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. Наличие контроля целостности файлов. Если настроен контроль целостности, выводится дата последней синхронизации.&amp;lt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Активность системы Защищённой Среды. Учитывается, что эта система может быть включена частично (настроена только проверка ЭЦП устанавливаемых пакетов программ).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="journalsTab">
+      <attribute name="title">
+       <string>Журналы</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="2">
+        <widget class="QTableWidget" name="journalText">
+         <column>
+          <property name="text">
+           <string>Дата</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Время</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Компьютер</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Событие</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="journalUpdateButton">
+         <property name="text">
+          <string>Обновить Журнал</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="2">
+        <widget class="QTreeWidget" name="journalsTree">
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>170</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <column>
+          <property name="text">
+           <string>Журналы</string>
+          </property>
+         </column>
+         <item>
+          <property name="text">
+           <string>Системные</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>auth.log</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>syslog</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>kern.log</string>
+           </property>
+          </item>
+         </item>
+         <item>
+          <property name="text">
+           <string>Astra Linux</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>USB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Другие</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="monitorTab">
+      <attribute name="title">
+       <string>Мониторинг</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Контроль целостности</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Антивирусная защита</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" rowspan="5">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Рекомендаци по защите</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QTextBrowser" name="recomendText"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Замкнутая программная среда</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="avStatusLabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>ВЫКЛЮЧЕНА</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="integControlLabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>ВЫКЛЮЧЕН</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="clWSLabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>ВЫКЛЮЧЕНА</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QPushButton" name="monUpdButton">
+         <property name="text">
+          <string>Проверить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
