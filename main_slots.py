@@ -40,7 +40,7 @@ class MainFormSlots(Ui_Form):
 						for line in f.readlines():
 							lines.append(line.decode('utf-8'))						
 				else:						
-					with open('/var/log/'+data, 'r') as f:
+					with open('/var/log/'+data, 'r', errors='ignore') as f:
 						lines = f.readlines()
 				headers = ["Дата", "Время", "Компьютер", "Событие"]
 				self.journalText.setColumnCount(4)

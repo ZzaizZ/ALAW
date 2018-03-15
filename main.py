@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+#coding:windows-1252
+
 import sys
 import re
 import gzip
@@ -19,35 +21,39 @@ class MainForm(main_slots.MainFormSlots):
         self.setupUi(form)
         # далее, донастройка интерфейсов
         self.journalText.horizontalHeader().setStretchLastSection(True)
-        # чтение ВСЕХ имеющихся логов у астры (в основном - ald)
+        # чтение логов системы
         logPath = "/var/log/"
         try:
-            ald_logs = [f for f in listdir(logPath+"ald/")]
+            # Составление списков журналов и их вывод в дерево навигации
             kern_logs = [f for f in listdir(logPath) if re.search(r"kern\.log.?[0-9]*", f)]
-            for i in range(0, len(ald_logs)):
-            	item = QtWidgets.QTreeWidgetItem()
-            	item.setText(0, ald_logs[i])
-            	self.journalsTree.topLevelItem(1).addChild(item)
-            for i in range(0, len(kern_logs)):
-                item = QtWidgets.QTreeWidgetItem()
-                item.setText(0, kern_logs[i])
-                self.journalsTree.topLevelItem(0).addChild(item)
+            sys_logs = [f for f in listdir(logPath) if re.search(r'syslog\.?[0-9]*', f)]
+            auth_logs = [f for f in listdir(logPath) if re.search(r'auth\.log.?[0-9]*', f)]
+            topLevelItem = self.journalsTree.topLevelItem(0)
+            kern_root = QtWidgets.QTreeWidgetItem(topLevelItem)
+            self.journalsTree.addTopLevelItem(topLevelItem)
+            kern_root.setText(0, 'kern')
+            for kern_log in kern_logs:
+                item = QtWidgets.QTreeWidgetItem(kern_root)
+                self.journalsTree.addTopLevelItem(item)
+                item.setText(0, kern_log)
+            sys_root = QtWidgets.QTreeWidgetItem(topLevelItem)
+            self.journalsTree.addTopLevelItem(topLevelItem)
+            sys_root.setText(0, 'syslog')
+            for sys_log in sys_logs:
+                item = QtWidgets.QTreeWidgetItem(sys_root)
+                self.journalsTree.addTopLevelItem(item)
+                item.setText(0, sys_log)
+            auth_root = QtWidgets.QTreeWidgetItem(topLevelItem)
+            self.journalsTree.addTopLevelItem(topLevelItem)
+            auth_root.setText(0, 'auth')
+            for auth_log in auth_logs:
+                item = QtWidgets.QTreeWidgetItem(auth_root)
+                self.journalsTree.addTopLevelItem(item)
+                item.setText(0, auth_log)
         except IOError as e:
             print('Ошибка при чтении логов астры.\nПроверьте путь \/var\/log\/ald\/')
             pass
             #логгирование
-        # чтение  дополнительных логов
-        try:
-            file = open('~/.ald/')
-        except IOError as e:
-            pass
-            #ЛОГГИРОВАНИЕ
-        else:
-            ald_logs = [f for f in listdir("~/.ald/")]
-            for i in range(0, len(ald_logs)):
-                item = QtWidgets.QTreeWidgetItem()
-                item.setText(0, ald_logs[i])
-                self.journalsTree.topLevelItem(3).addChild(item)
         # чтение логов подключения USB
         try:
             # чтение конкретных файлов по заданному паттернудля usb
@@ -58,7 +64,7 @@ class MainForm(main_slots.MainFormSlots):
                 item = QtWidgets.QTreeWidgetItem()
                 item.setText(0, usb_logs[i])
                 # item.setText(0, "usb event " + str(i))
-                self.journalsTree.topLevelItem(2).addChild(item)
+                self.journalsTree.topLevelItem(1).addChild(item)
         except IOError as e:
             print("Не удалось открыть лог USB: %s" % (e))
             pass
@@ -79,7 +85,7 @@ if __name__ == '__main__':
     window = QWidget()
     # Создаём экземпляр нашего UI
     ui = MainForm(window)
-    # Отображаем окно
+    # Отображаем окн
     window.show()
     # Обрабатываем нажатие на кнопку окна "Закрыть"
     sys.exit(app.exec_())
