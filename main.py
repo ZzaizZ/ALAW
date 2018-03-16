@@ -36,6 +36,7 @@ class MainForm(main_slots.MainFormSlots):
                 item = QtWidgets.QTreeWidgetItem(kern_root)
                 self.journalsTree.addTopLevelItem(item)
                 item.setText(0, kern_log)
+                item.setText(1, 'log')
             sys_root = QtWidgets.QTreeWidgetItem(topLevelItem)
             self.journalsTree.addTopLevelItem(topLevelItem)
             sys_root.setText(0, 'syslog')
@@ -59,7 +60,6 @@ class MainForm(main_slots.MainFormSlots):
             # чтение конкретных файлов по заданному паттернудля usb
             usb_logs_path = "/var/log"
             usb_logs = [f for f in listdir(usb_logs_path) if re.search(r"syslog.?[0-9]*", f)]
-            print(usb_logs)
             for i in range(0,len(usb_logs)):
                 item = QtWidgets.QTreeWidgetItem()
                 item.setText(0, usb_logs[i])

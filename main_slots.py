@@ -6,6 +6,7 @@ import subprocess
 import time
 import parse_usb
 import gzip
+from alLogs import SystemLog
 
 class MainFormSlots(Ui_Form):
 
@@ -28,31 +29,15 @@ class MainFormSlots(Ui_Form):
 		lines = ""
 
 		# генерируем заготовку требуемой таблицы, читаем данные из нужного журнала, прописываем их:		
-		# сами логи (точнее, их названия) в дерево загоняются в файле main.py
+		# сами логи (точнее, их названия) в дерево загоняются автоматически в main.py
 		if data != 'Системные' and data != 'Astra Linux' and data != 'Другие' and data != 'USB':
 			parent = self.journalsTree.currentItem().parent().text(0)
 			self.journalsTree.setHeaderLabel(parent)
-			# Откуда читать журналы? Системные в /var/log, журналы Астры в /var/log/ald/
-			if parent == 'Системные':
-				if data[-2:] == 'gz':
-					with gzip.open('/var/log/'+data, 'r') as f:
-						lines = []
-						for line in f.readlines():
-							lines.append(line.decode('utf-8'))						
-				else:						
-					with open('/var/log/'+data, 'r', errors='ignore') as f:
-						lines = f.readlines()
-				headers = ["Дата", "Время", "Компьютер", "Событие"]
-				self.journalText.setColumnCount(4)
-				for i in range(0, 4):
-					self.journalText.setHorizontalHeaderItem(i, QTableWidgetItem(headers[i]))
-				# из-за формата журнала некоторые строки приходится объединять
-				for line in lines:
-					line = line.split(" ", 4)
-					self.journalText.insertRow(0)
-					self.journalText.setItem(0, 0, QTableWidgetItem(line[0]+" "+line[1]))
-					for i in range(1, 4):
-						self.journalText.setItem(0, i, QTableWidgetItem(line[i+1]))
+			# Откуда читать журналы? Системные в /var/log
+			log_containers = ['kern', 'syslog', 'auth']
+			if parent in log_containers:
+				log_file = SystemLog('/var/log/'+data)
+				success = log_file.print_log(self.journalText)
 			# заполнение логов для событий USB
 			elif parent == 'USB':
 				#какие заголовки столбцов будут:				
