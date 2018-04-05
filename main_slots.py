@@ -53,10 +53,13 @@ class MainFormSlots(Ui_Form):
 				for event in logs:
 					if event:
 						self.journalText.insertRow(0)
-						for col in event[2:]:
-							self.journalText.setItem(0, event.index(col)-2, QTableWidgetItem(col))
-							if event[1] == 1:
-								self.journalText.item(0, event.index(col)-2).setBackground(QColor(0,200,0,200))
-							elif event[1] == 0:
-								self.journalText.item(0, event.index(col)-2).setBackground(QColor(200,0,0,100))
+						for col in headers:
+							if col in event.keys():
+								self.journalText.setItem(0, headers.index(col), QTableWidgetItem(event[col]))
+						if event['status'] == 'disconnected':
+							for cell_index in range(3):
+								self.journalText.item(0, cell_index).setBackground(QColor(200,0,0,100))
+						elif event['status'] == 'connected':
+							for cell_index in range(len(event.keys())-2):
+								self.journalText.item(0, cell_index).setBackground(QColor(0,200,0,100))
 			self.journalText.resizeColumnsToContents()

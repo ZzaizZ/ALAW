@@ -40,78 +40,61 @@ def parseUSB(file):
 	else:						
 		with open(file, 'r') as f:
 			lines = f.readlines()
-	# стандартный шаблон для regexp
-	usb_pat = r'usb [0-9]-[0-9]:'
+	
 	# переменные для хранения результатов
 	result = []
-	tmp_result = []
-	devices = []
 	device = USBDevice()
 
+	# стандартный шаблон для regexp
+	usb_pat = r'usb [0-9]-[0-9]:'
 	# построчное чтение syslog
 	for line in lines:
 		if file[-2:] == 'gz':
 			line = line.decode('utf-8')
 		# поиск строк с usb событиями
 		usbs = re.search(usb_pat, line)
+		tmp_result = {}
+		#если в строке лога идёт событие, связанное с usb-портом
 		if usbs:
 			# Структура формируемого списка:
-			# номер устройства, статус (1 - подкл, 0 - выкл), дата, время, порт, имя, производитель, ID
-			# Проверяем устройства из списка, отключены ли они
-			usb_discon_pat = r'usb [0-9]-[0-9]: USB disconnect, device number [0-9]+'
-			st = re.search(usb_discon_pat, line)
-			if st:
-				tmp_line = line.split()
-				number = tmp_line[-1]
-				for e in result:
-					if e and e != '' and int(e[0]) == int(number)-1 and e[1] == 1:
-						tmp_result = e[:]
-						tmp_result[1] = 0
-						tmp_result[2] = " ".join(tmp_line[0:2])
-						tmp_result[3] = tmp_line[2]
-						break
-				result.append(tmp_result)
-				tmp_result=[]
-				continue
-			# Ищем первое сообщение о новом USB устройстве.
-			# Оттуда помимо времени нужен device number
-			# используя это значение можно определить, когда это устройство было подключено
-			usb_first_pat = r'new (high)|(full)-speed USB device number [0-9]+'
-			st = re.search(usb_first_pat, line)
-			if st:
-				if tmp_result and tmp_result[1] != 0:
-					result.append(tmp_result)
-				tmp_result = []
-				devices.append(device)
-				device = USBDevice()
-				tmp_line = line.split()
-				if tmp_line[5] == '[':
-					tmp_line.remove('[')
-				tmp_result.append(int(tmp_line[13])) # 13/14 было
-				tmp_result.append(1)
-				tmp_result.append(" ".join(tmp_line[0:2]))
-				tmp_result.append(tmp_line[2])
-				tmp_result.append(tmp_line[7][0:-1]) # 7/8
+			# статус, номер устройства, дата, время, порт, имя, производитель, ID
+			new_usb_pat = r'^([A-Z][a-z]{2}\s+[1-9]{1,2}).+(([0-9]{2}:){2}[0-9]{2}).*usb ([1-9]-[1-9]): new ((high)|(full))-speed USB device number ([0-9]+)'
+			dis_usb_pat = r'^([A-Z][a-z]{2}\s+[1-9]{1,2}).+(([0-9]{2}:){2}[0-9]{2}).*usb ([1-9]-[1-9]): USB disconnect, device number ([0-9]+)'
+			st_new = re.search(new_usb_pat, line)
+			st_dis = re.search(dis_usb_pat, line)
+			if st_new:				
+				tmp_result['status'] = 'connected'
+				tmp_result['dev_number'] = st_new.group(8)
+				tmp_result['Дата'] = st_new.group(1)
+				tmp_result['Время'] = st_new.group(2)
+				tmp_result['Порт'] = st_new.group(4)
+			elif st_dis:
+				tmp_result['status'] = 'disconnected'
+				tmp_result['dev_number'] = st_dis.group(5)
+				tmp_result['Порт'] = st_dis.group(4)
+				tmp_result['Дата'] = st_dis.group(1)
+				tmp_result['Время'] = st_dis.group(2)
 
-			# ниже идут три условия парсинга производителя, продукта и ID
-			usb_prod_pat = r'Product: [a-zA-Z0-9 ]'
+			if tmp_result:
+				result.append(tmp_result)
+			tmp_result = {}
+		# ниже идут три условия парсинга производителя, продукта и ID
+		if len(result) > 0:
+			usb_prod_pat = r'Product: ([a-zA-Z0-9 ]+)\n?'
 			st = re.search(usb_prod_pat, line)
 			if st:
-				tmp_line = line.split()
-				device.setProduct((" ".join(tmp_line[10:]))[0:])
-				tmp_result.append(device.getProduct())
+				device.setProduct(st.group(1))
+				result[-1]['Имя'] = device.getProduct()
 			
-			usb_vend_pat = r'Manufacturer: [a-zA-Z0-9 ]'
+			usb_vend_pat = r'Manufacturer: ([a-zA-Z0-9 ]+)\n?'
 			st = re.search(usb_vend_pat, line)
 			if st:
-				tmp_line = line.split()
-				device.setVendor((" ".join(tmp_line[10:]))[0:])
-				tmp_result.append(device.getVendor())
+				device.setVendor(st.group(1))
+				result[-1]['Производитель'] = device.getVendor()
 			
-			usb_serN_pat = r'SerialNumber: [a-zA-Z0-9 ]'
+			usb_serN_pat = r'SerialNumber: ([a-zA-Z0-9 _-]+)\n?'
 			st = re.search(usb_serN_pat, line)
 			if st:
-				tmp_line = line.split()
-				device.setSerN((" ".join(tmp_line[10:]))[0:])
-				tmp_result.append(device.getSerN())
+				device.setSerN(st.group(1))
+				result[-1]['ID'] = device.getSerN()
 	return(result)

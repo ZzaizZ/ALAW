@@ -21,6 +21,8 @@ class MainForm(main_slots.MainFormSlots):
         self.setupUi(form)
         # далее, донастройка интерфейсов
         self.journalText.horizontalHeader().setStretchLastSection(True)
+        self.journalText.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.journalText.setSortingEnabled(True)
         # чтение логов системы
         logPath = "/var/log/"
         try:
@@ -52,7 +54,7 @@ class MainForm(main_slots.MainFormSlots):
                 self.journalsTree.addTopLevelItem(item)
                 item.setText(0, auth_log)
         except IOError as e:
-            print('Ошибка при чтении логов астры.\nПроверьте путь \/var\/log\/ald\/')
+            print('Ошибка при чтении логов системы.\nПроверьте путь \/var\/log\/ и права доступа до файла.')
             pass
             #логгирование
         # чтение логов подключения USB
@@ -60,10 +62,12 @@ class MainForm(main_slots.MainFormSlots):
             # чтение конкретных файлов по заданному паттернудля usb
             usb_logs_path = "/var/log"
             usb_logs = [f for f in listdir(usb_logs_path) if re.search(r"syslog.?[0-9]*", f)]
+            topLevelItem = self.journalsTree.topLevelItem(0)
+            usb_root = QtWidgets.QTreeWidgetItem(topLevelItem)
             for i in range(0,len(usb_logs)):
+
                 item = QtWidgets.QTreeWidgetItem()
                 item.setText(0, usb_logs[i])
-                # item.setText(0, "usb event " + str(i))
                 self.journalsTree.topLevelItem(1).addChild(item)
         except IOError as e:
             print("Не удалось открыть лог USB: %s" % (e))
